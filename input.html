@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <metaname="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // Input a password
+        let password = prompt("Enter your password: ");
+
+        // Check password strength
+        if (password.length < 6) {
+            console.log("Password is too weak.");
+        } else if (/^[a-zA-Z0-9]+$/.test(password)) {
+            console.log("Password is moderate.");
+        } else if (/[a-zA-Z]/.test(password) && /\d/.test(password) && /[@$!%*?&]/.test(password)) {
+            console.log("Password is strong.");
+        } else {
+            console.log("Password is of unknown strength.");
+        }
+    </script>
+</body>
+</html>

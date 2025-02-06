@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let num1 = parseInt(prompt("enter your number"));
+        let num2 = parseInt(prompt("enter your number"));
+        let operator = prompt(" enter your operator + - * ");
+
+        if (operator === "+") {
+            console.log(num1 + num2);
+        }
+        else if (operator === "-") {
+            console.log(num - num2);
+        }
+        else if (operator === "*") {
+            console.log(num1 * num2);
+        }
+        else if ( operator === "/"){
+            if (num2 !==0 ){
+                console.log(` The result is : ${num1/ num2}`)
+            }
+            else {
+                console.log("Division by zero is not allowed ");
+            }
+         }
+        else {
+            console.log( "invalid operator");
+        }
+    </script>
+</body>
+
+</html>
