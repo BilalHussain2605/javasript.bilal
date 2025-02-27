@@ -26,8 +26,30 @@ function Faisi(){
     document.body.style.backgroundColor = "black";
 }
 </script>    -->
+    <!-- Input Field and Button -->
+    <input type="text" placeholder="Type Something" id="userinput">
+    <button onclick="showInput()">Click Me</button>
 
+    <!-- Paragraph to display output -->
+    <p id="outputText"></p>
 
+    <script>
+        function showInput() {
+            // Get the input field and value
+            let inputField = document.getElementById("userinput");
+            let inputValue = inputField.value.trim(); // .trim() to remove extra spaces
+
+            // Check if input is not empty
+            if (inputValue !== "") {
+                // Update the paragraph text with input value
+                document.getElementById("outputText").innerText = "You Entered: " + inputValue;
+                // Clear the input field
+                inputField.value = "";
+            } else {
+                // Show an alert if input is empty
+                alert("Please Enter Something!");
+            }
+        }
+    </script>
 </body>
-
 </html>
