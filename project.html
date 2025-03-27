@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+        }
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f2f2f2;
+            padding: 10px;
+            margin: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h2>Expense Tracker</h2>
+    <input type="text" id="expenseName" placeholder="Expense Name">
+    <input type="number" id="expenseAmount" placeholder="Amount">
+    <button onclick="addExpense()">Add Expense</button>
+    <h3>Total: $<span id="total">0</span></h3>
+    <ul id="expenseList"></ul>
+
+    <script>
+        let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+        updateUI();
+
+        function addExpense() {
+            let name = document.getElementById("expenseName").value;
+            let amount = document.getElementById("expenseAmount").value;
+            
+            if (name && amount) {
+                let expense = { name, amount: parseFloat(amount) };
+                expenses.push(expense);
+                localStorage.setItem("expenses", JSON.stringify(expenses));
+                updateUI();
+            }
+        }
+
+        function removeExpense(index) {
+            expenses.splice(index, 1);
+            localStorage.setItem("expenses", JSON.stringify(expenses));
+            updateUI();
+        }
+
+        function updateUI() {
+            let expenseList = document.getElementById("expenseList");
+            let total = document.getElementById("total");
+            
+            expenseList.innerHTML = "";
+            let sum = 0;
+
+            expenses.forEach((expense, index) => {
+                sum += expense.amount;
+                expenseList.innerHTML += `<li>${expense.name}: $${expense.amount} <button onclick="removeExpense(${index})">X</button></li>`;
+            });
+            
+            total.textContent = sum;
+        }
+    </script>
+</body>
+</html>
