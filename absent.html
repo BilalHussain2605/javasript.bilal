@@ -1,0 +1,73 @@
+<html>
+<head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+    .product {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .cart {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        background-color: #e0e0e0;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Simple E-Commerce</h2>
+    
+    <div class="product">
+        <span>Product 1 - $10</span>
+        <button class="addToCart" data-name="Product 1" data-price="10">Add to Cart</button>
+    </div>
+    <div class="product">
+        <span>Product 2 - $15</span>
+        <button class="addToCart" data-name="Product 2" data-price="15">Add to Cart</button>
+    </div>
+    <div class="product">
+        <span>Product 3 - $20</span>
+        <button class="addToCart" data-name="Product 3" data-price="20">Add to Cart</button>
+    </div>
+    
+    <div class="cart">
+        <h3>Shopping Cart</h3>
+        <ul id="cartItems"></ul>
+        <p><strong>Total: $<span id="totalPrice">0</span></strong></p>
+    </div>
+</div>
+
+<script>
+    let total = 0;
+    document.querySelectorAll(".addToCart").forEach(button => {
+        button.addEventListener("click", function() {
+            const name = this.getAttribute("data-name");
+            const price = parseFloat(this.getAttribute("data-price"));
+            
+            const cartItems = document.getElementById("cartItems");
+            const li = document.createElement("li");
+            li.textContent = `${name} - ${price}`;
+            cartItems.appendChild(li);
+            
+            total += price;
+            document.getElementById("totalPrice").textContent = total;
+        });
+    });
+</script>
+</body>
+</html>
